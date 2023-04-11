@@ -4,7 +4,6 @@
 # However maximum allowable length is 100.
 
 import random
-import sys
 import os
 
 SPEECH_BUBBLE = True
