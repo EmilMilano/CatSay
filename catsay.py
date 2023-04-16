@@ -25,11 +25,12 @@ quotes = ["Let me sudo rm -rf", "Its FOSS!", "Arch Btw",
           "import gravity", "goodbye world", "Password is password",
           "y2k", "*lightskin stare*", "*laughs in linux*",
           "COWABUNGA IT IS", "This was made in Python!",
-          "Just had a little kernal panic", "Fuck the User", "...",
+          "Just had a little kernal panic", "F**k the User", "...",
           "cd nuts", "Goodmorning Starshine, Earth says Hello!",
           "WARNING CAPS LOCK ENABLED", "Oppai!!!! ^_^", "Kimochi..UwU",
-          "JavaScript Vs the World", "Nvidia, Fuck you", "What in tarnation?!",
-          "Never gonna give up, Never gonna let you down, Never gonna run around and hurt you..."]
+          "JavaScript Vs the World", "Nvidia, F**k you", "What in tarnation?!",
+          "Never gonna give up, Never gonna let you down, Never gonna run around and hurt you...",
+          "Здравствуйте, товарищ! ☭"]
 
 
 def assemble_string_short(length: int, quote: str) -> str:
@@ -47,7 +48,7 @@ def assemble_string_short(length: int, quote: str) -> str:
 
 def assemble_string_long(line1: str, line2: str) -> str:
     """Assemble a speech bubble ready for out (Long version)"""
-    
+
     return f"""
     {'=' * 55}
   / {line1}\\
@@ -58,17 +59,19 @@ def assemble_string_long(line1: str, line2: str) -> str:
 
 """
 
-# Randomly choose a quote and a ascii art file
-choosen_file = random.choice(file_list)
-choosen_quote = random.choice(quotes)
 
-quote_length = len(choosen_quote)
+# Randomly choose a quote and a ascii art file
+chosen_file = random.choice(file_list)
+# chosen_quote = random.choice(quotes)
+chosen_quote = "Здравствуйте, товарищ! ☭"
+
+quote_length = len(chosen_quote)
 
 if SPEECH_BUBBLE is True:
 
     # If Quote is short, assemble one-liner output string
     if quote_length <= 50:
-        output_string = assemble_string_short(quote_length, choosen_quote)
+        output_string = assemble_string_short(quote_length, chosen_quote)
 
     # Break quote to two lines
     elif quote_length <= 100:
@@ -78,7 +81,7 @@ if SPEECH_BUBBLE is True:
         assembled_line_2 = ''
 
         # Add max possible words to first line then move to next
-        for i in choosen_quote.split():
+        for i in chosen_quote.split():
 
             line_length += len(i)
 
@@ -92,13 +95,14 @@ if SPEECH_BUBBLE is True:
         assembled_line_1 = assembled_line_1.center(55)
         assembled_line_2 = assembled_line_2.center(55)
 
-        output_string = assemble_string_long(assembled_line_1, assembled_line_2)
+        output_string = assemble_string_long(
+            assembled_line_1, assembled_line_2)
 
     else:
         print('Error! Quote too long!, Max length = 100 chars')
 
 # Get directory of /Says folder and attempt read the file
-file_name = f"{absolute_path}/{choosen_file}.say"
+file_name = f"{absolute_path}/{chosen_file}.say"
 
 with open(file_name, "r") as File:
     output_string += File.read()
