@@ -62,8 +62,7 @@ def assemble_string_long(line1: str, line2: str) -> str:
 
 # Randomly choose a quote and a ascii art file
 chosen_file = random.choice(file_list)
-# chosen_quote = random.choice(quotes)
-chosen_quote = "Здравствуйте, товарищ! ☭"
+chosen_quote = random.choice(quotes)
 
 quote_length = len(chosen_quote)
 
