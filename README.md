@@ -2,28 +2,40 @@
 
 ## Description
 
-__Catsay__ was heavily inspired by, and is a clone of __Cowsay by Tony Monroe__. Cowsay works mighty fine as it is. I made a small script so cowsay spits out random quotes whenever the terminal is opened.
-However, its' ASCII art is way too big for my terminal. And so Catsay was born. Catsay is a rushed project, which I created while still learning Python. 
-
-## Restrictions
-
-Unlike Cowsay, Catsay will not accept arguments or quotes from the user. It is purely designed in a way that it spits out random quotes and ASCII art whenever the terminal is open. While much of the art being quite small to not take up much space. Quotes and Art needs to be preloaded into the script.  
-
-## Customizing
-
-`Says` folder contains all the ascii art used in the script. New Art can be added to this folder, name the extension `say` as in `cow.say` and include the file name `cow` part into the `file_list` list within the script.
-
-Quotes can be embedded to the script itself, add custom quotes into the `quotes` list. Quotes need to be no more than 100 characters in length.
+**Catsay** was heavily inspired by, and is a clone of **Cowsay by Tony Monroe**. Cowsay works mighty fine as it is. Cowsay can be included in bashrc. So it runs whenever bash starts.
+However, its' ASCII can be too big for a small terminal window. Catsay was written with small ASCII arts to mitigate this issue. Catsay is a rushed project, expect bad, imperfect code.
 
 ## Usage
 
-Script and the `Says` folder must be in the same directory. Edit bashrc and include the following line to run the script as bash starts.
+Like Cowsay, Catsay can accept arguments or quotes from the user. `-f` can be used to specify an ASCII file in the `Says` folder.
+`-f` flag is always the first argument used. After than, text to be displayed can be entered. Character length of the text must be no more than 100.
+
+Example below:
+
+```
+$ python catsay.py -f cat hello world
+```
+
+Catsay can also be used to work whenever bash is opened. Edit your `bashrc` file and add the program, so it runs when bash starts.
 
 ```
 python3 path/to/the/script/from/home/Catsay.py
 ```
 
+## Customizing
+
+Location of the `Says` folder and `Quotes.txt` file must not be changed.
+
+`Says` folder contains all the ascii art used in the script.
+New Art can be added to this folder. Open a `text` file and copy the ASCII art into the file. Then rename the extension to `say` as in `cow.say`.
+
+Texts, or `Quotes` to be displaed by the program can be added to the `Quotes.txt` file. Every new quote must be added to a new line. Quotes need to be no more than 100 characters in length.
+
 You can also pipe the output to `lolcat`.
+
+## Dependencies
+
+1. `Python`
 
 ## Notice
 

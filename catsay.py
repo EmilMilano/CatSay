@@ -5,32 +5,42 @@
 
 import random
 import os
+import sys
 
+CONSOLE_INPUT = False if len(sys.argv) == 1 else True
 SPEECH_BUBBLE = True
 # Flip boolean to 'False' to just print the ascii art,
-# without speech bubble
-output_string = ''
-absolute_path = os.path.join(os.path.dirname(__file__)) + "/Says"
+# without the speech bubble
 
-file_list = ["bat", "cards", "cat", "chonk_cat", "cloudgazer", "crab",
-             "dapper_cat", "devil", "dolphin", "dragon", "egyptian", "fish",
-             "flintstone", "four_bears", "gun", "hatter", "hummingbird",
-             "kitty_cat", "mermaids", "octopus", "owl", "phoenix",
-             "southpark", "squidward", "swans", "turtle", "tux", "tux_stare",
-             "twin_cat", "whale"]
+absolute_path = os.path.join(os.path.dirname(__file__))
+file_list = [i for i in os.listdir(
+    absolute_path + '/Says') if i.endswith('.say')]
 
-quotes = ["Let me sudo rm -rf", "Its FOSS!", "Arch Btw",
-          "neofetch neofetch neofetch", "Windows LMAO", "life | grep meaning",
-          "That was not supposed to happen", "cowsay hello world",
-          "import gravity", "goodbye world", "Password is password",
-          "y2k", "*lightskin stare*", "*laughs in linux*",
-          "COWABUNGA IT IS", "This was made in Python!",
-          "Just had a little kernal panic", "F**k the User", "...",
-          "cd nuts", "Goodmorning Starshine, Earth says Hello!",
-          "WARNING CAPS LOCK ENABLED", "Oppai!!!! ^_^", "Kimochi..UwU",
-          "JavaScript Vs the World", "Nvidia, F**k you", "What in tarnation?!",
-          "Never gonna give up, Never gonna let you down, Never gonna run around and hurt you...",
-          "Здравствуйте, товарищ! ☭"]
+with open(absolute_path + '/Quotes.txt', 'r') as File:
+    quotes = File.readlines()
+
+if CONSOLE_INPUT is True:
+    chosen_quote = ''
+
+    if sys.argv[1] == '-f':
+        chosen_file = f'{sys.argv[2]}.say'
+
+        if len(sys.argv) >= 4:
+            for i in range(3, len(sys.argv)):
+                chosen_quote += f'{sys.argv[i]} '
+
+        else:
+            chosen_quote = (random.choice(quotes)).strip('\n')
+
+    else:
+        chosen_file = random.choice(file_list)
+
+        for i in range(1, len(sys.argv)):
+            chosen_quote += f'{sys.argv[i]} '
+
+else:
+    chosen_file = random.choice(file_list)
+    chosen_quote = (random.choice(quotes)).strip('\n')
 
 
 def assemble_string_short(length: int, quote: str) -> str:
@@ -47,7 +57,7 @@ def assemble_string_short(length: int, quote: str) -> str:
 
 
 def assemble_string_long(line1: str, line2: str) -> str:
-    """Assemble a speech bubble ready for out (Long version)"""
+    """Assemble a speech bubble ready for output (Long version)"""
 
     return f"""
     {'=' * 55}
@@ -61,13 +71,10 @@ def assemble_string_long(line1: str, line2: str) -> str:
 
 
 # Randomly choose a quote and a ascii art file
-chosen_file = random.choice(file_list)
-chosen_quote = random.choice(quotes)
-
 quote_length = len(chosen_quote)
 
 if SPEECH_BUBBLE is True:
-
+    output_string = ''
     # If Quote is short, assemble one-liner output string
     if quote_length <= 50:
         output_string = assemble_string_short(quote_length, chosen_quote)
@@ -75,16 +82,13 @@ if SPEECH_BUBBLE is True:
     # Break quote to two lines
     elif quote_length <= 100:
 
-        line_length = 0
         assembled_line_1 = ''
         assembled_line_2 = ''
 
         # Add max possible words to first line then move to next
         for i in chosen_quote.split():
 
-            line_length += len(i)
-
-            if line_length < 45:
+            if len(assembled_line_1) < 45:
                 assembled_line_1 += i + ' '
 
             else:
@@ -98,10 +102,10 @@ if SPEECH_BUBBLE is True:
             assembled_line_1, assembled_line_2)
 
     else:
-        print('Error! Quote too long!, Max length = 100 chars')
+        print('Error! Quote too long!')
 
 # Get directory of /Says folder and attempt read the file
-file_name = f"{absolute_path}/{chosen_file}.say"
+file_name = f"{absolute_path}/Says/{chosen_file}"
 
 with open(file_name, "r") as File:
     output_string += File.read()
