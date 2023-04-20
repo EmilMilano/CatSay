@@ -1,4 +1,4 @@
-# New ASCII art text files must be put into the /Sys directory.
+# New ASCII art text files must be put into the /Says directory.
 # With extension renamed to 'say' as in 'cat.say'
 # The directory structure must not be changed.
 # Insert new quotes to Quotes.txt file, within a new line.
