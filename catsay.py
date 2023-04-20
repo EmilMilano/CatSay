@@ -1,7 +1,8 @@
-# New files must be put into the /Sys directory.
+# New ASCII art text files must be put into the /Sys directory.
+# With extension renamed to 'say' as in 'cat.say'
 # The directory structure must not be changed.
-# New Quotes can be inserted into the "quotes" list.
-# However maximum allowable length is 100.
+# Insert new quotes to Quotes.txt file, within a new line.
+# Maximum allowable length of a quote is 100.
 
 import random
 import os
