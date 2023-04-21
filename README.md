@@ -8,7 +8,7 @@ However, its' ASCII can be too big for a small terminal window. Catsay was writt
 ## Usage
 
 Like Cowsay, Catsay can accept arguments or quotes from the user. `-f` can be used to specify an ASCII file in the `Says` folder.
-`-f` flag is always the first argument used. After that, text to be displayed can be entered. Character length of the text must be no more than 100.
+`-f` flag is always the first argument used. After that, text to be displayed can be entered.
 
 Example below:
 
@@ -29,7 +29,7 @@ Location of the `Says` folder and `Quotes.txt` file must not be changed.
 `Says` folder contains all the ASCII art used in the script.
 New art can be added to this folder. Open a `text` file and copy the ASCII art into the file. Then rename the extension to `say` as in `cow.say`.
 
-Texts, or `Quotes` to be displaed by the program can be added to the `Quotes.txt` file. Every new quote must be added to a new line. Quotes need to be no more than 100 characters in length.
+Texts, or `Quotes` to be displaed by the program can be added to the `Quotes.txt` file. Every new quote must be added to a new line.
 
 You can also pipe the output to `lolcat`.
 

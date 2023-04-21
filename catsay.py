@@ -2,7 +2,6 @@
 # With extension renamed to 'say' as in 'cat.say'
 # The directory structure must not be changed.
 # Insert new quotes to Quotes.txt file, within a new line.
-# Maximum allowable length of a quote is 100.
 
 import random
 import os
@@ -71,9 +70,50 @@ def assemble_string_long(line1: str, line2: str) -> str:
 """
 
 
+def assemble_string_huge(string: str) -> str:
+    """Assemble a speech bubble ready for output (uncapped)"""
+
+    string_array = [i for i in string.split()]
+    output_array = []
+    output_string = ("_" * 57).center(60, ' ')
+    assemble_line = ''
+
+    for i in string_array:
+        if len(assemble_line) < 45:
+            assemble_line += i + ' '
+
+        else:
+            output_array.append(assemble_line)
+            assemble_line = ''
+
+    for i in range(len(output_array)):
+        if i == 0:
+            output_array[0] = (
+                '\n' + '/ ' + output_array[0].center(55, ' ') + ' \\')
+
+        elif output_array[i] == output_array[-1]:
+            output_array[i] = (
+                '\n' + '\\ ' + output_array[i].center(55, ' ') + ' /')
+
+        else:
+            output_array[i] = (
+                '\n' + '| ' + output_array[i].center(55, ' ') + ' |')
+
+    for i in output_array:
+        output_string += i
+
+    output_string += '\n' + ('-' * 57).center(60, ' ')
+    output_string += """
+            \\
+             \\
+
+"""
+
+    return output_string
+
+
 # Randomly choose a quote and a ascii art file
 quote_length = len(chosen_quote)
-
 if SPEECH_BUBBLE is True:
     output_string = ''
     # If Quote is short, assemble one-liner output string
@@ -103,7 +143,7 @@ if SPEECH_BUBBLE is True:
             assembled_line_1, assembled_line_2)
 
     else:
-        print('Error! Quote too long!')
+        output_string = assemble_string_huge(chosen_quote)
 
 # Get directory of /Says folder and attempt read the file
 file_name = f"{absolute_path}/Says/{chosen_file}"
