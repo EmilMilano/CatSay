@@ -12,36 +12,6 @@ SPEECH_BUBBLE = True
 # Flip boolean to 'False' to just print the ascii art,
 # without the speech bubble
 
-absolute_path = os.path.join(os.path.dirname(__file__))
-file_list = [i for i in os.listdir(
-    absolute_path + '/Says') if i.endswith('.say')]
-
-with open(absolute_path + '/Quotes.txt', 'r') as File:
-    quotes = File.readlines()
-
-if CONSOLE_INPUT is True:
-    chosen_quote = ''
-
-    if sys.argv[1] == '-f':
-        chosen_file = f'{sys.argv[2]}.say'
-
-        if len(sys.argv) >= 4:
-            for i in range(3, len(sys.argv)):
-                chosen_quote += f'{sys.argv[i]} '
-
-        else:
-            chosen_quote = (random.choice(quotes)).strip('\n')
-
-    else:
-        chosen_file = random.choice(file_list)
-
-        for i in range(1, len(sys.argv)):
-            chosen_quote += f'{sys.argv[i]} '
-
-else:
-    chosen_file = random.choice(file_list)
-    chosen_quote = (random.choice(quotes)).strip('\n')
-
 
 def assemble_string_short(length: int, quote: str) -> str:
     """Assemble a speech bubble ready for output"""
@@ -113,6 +83,36 @@ def assemble_string_huge(string: str) -> str:
 
     return output_string
 
+
+absolute_path = os.path.join(os.path.dirname(__file__))
+file_list = [i for i in os.listdir(
+    absolute_path + '/Says') if i.endswith('.say')]
+
+with open(absolute_path + '/Quotes.txt', 'r') as File:
+    quotes = File.readlines()
+
+if CONSOLE_INPUT is True:
+    chosen_quote = ''
+
+    if sys.argv[1] == '-f':
+        chosen_file = f'{sys.argv[2]}.say'
+
+        if len(sys.argv) >= 4:
+            for i in range(3, len(sys.argv)):
+                chosen_quote += f'{sys.argv[i]} '
+
+        else:
+            chosen_quote = (random.choice(quotes)).strip('\n')
+
+    else:
+        chosen_file = random.choice(file_list)
+
+        for i in range(1, len(sys.argv)):
+            chosen_quote += f'{sys.argv[i]} '
+
+else:
+    chosen_file = random.choice(file_list)
+    chosen_quote = (random.choice(quotes)).strip('\n')
 
 # Randomly choose a quote and a ascii art file
 quote_length = len(chosen_quote)
