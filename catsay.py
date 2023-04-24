@@ -75,7 +75,7 @@ def assemble_string_huge(string: str) -> str:
 
     string_array = [i for i in string.split()]
     output_array = []
-    output_string = ("_" * 57).center(60, ' ')
+    output_string = ("_" * 55).center(60, ' ')
     assemble_line = ''
 
     for i in string_array:
@@ -86,14 +86,16 @@ def assemble_string_huge(string: str) -> str:
             output_array.append(assemble_line)
             assemble_line = ''
 
+    output_array.append(assemble_line)
+
     for i in range(len(output_array)):
         if i == 0:
             output_array[0] = (
-                '\n' + '/ ' + output_array[0].center(55, ' ') + ' \\')
+                '\n' + ' / ' + output_array[0].center(53, ' ') + ' \\ ')
 
         elif output_array[i] == output_array[-1]:
             output_array[i] = (
-                '\n' + '\\ ' + output_array[i].center(55, ' ') + ' /')
+                '\n' + ' \\ ' + output_array[i].center(53, ' ') + ' / ')
 
         else:
             output_array[i] = (
@@ -102,7 +104,7 @@ def assemble_string_huge(string: str) -> str:
     for i in output_array:
         output_string += i
 
-    output_string += '\n' + ('-' * 57).center(60, ' ')
+    output_string += '\n' + (u"\u203E" * 55).center(60, ' ')
     output_string += """
             \\
              \\
