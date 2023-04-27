@@ -31,8 +31,8 @@ def assemble_string_long(line1: str, line2: str) -> str:
 
     return f"""
     {'=' * 55}
-  / {line1}\\
-  \\ {line2}/
+  / {line1} \\
+  \\ {line2} /
     {'=' * 55}
         \\
          \\
