@@ -11,6 +11,7 @@ CONSOLE_INPUT = False if len(sys.argv) == 1 else True
 SPEECH_BUBBLE = True
 # Flip boolean to 'False' to just print the ascii art,
 # without the speech bubble
+output_string = ''
 
 
 def assemble_string_short(length: int, quote: str) -> str:
